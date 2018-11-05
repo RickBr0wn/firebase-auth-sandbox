@@ -1,28 +1,36 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import Navbar from './components/Navbar'
+import Footer from './components/Footer'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import Login from './components/Login'
 
 class App extends Component {
+  
   render() {
+          
+    const Users = () => <div className="content"><h3>Users</h3></div>
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+      <BrowserRouter>
+        <div className="App">
+          <div className="front-camera"></div>
+          <div className="speaker"></div>
+
+          <div className="screen">
+            <Navbar />
+            <Switch>
+              <Route exact path='/' component={Main} />
+              <Route path='/login' component={Login} />
+              <Route path='/users' component={Users} />
+            </Switch>
+            <Footer />
+          </div>
+
+          <div className="microphone"></div>
+        </div>
+      </BrowserRouter>
+    )
   }
 }
 
-export default App;
+export default App
